@@ -43,10 +43,14 @@ def XORonLetter(letter,keyLetter):
 
     return decode(encryptedLetter)
 
+
 print(XORonLetter("r","f"))
+
 
 def XORonSentence(sentence, key):
     encryptedSentence = ""
+    genKey = generatKey(sentence,key)
+    
     for i in range (len(sentence)):
 
         encryptedSentence += XORonLetter(sentence[i],key[i])
@@ -56,3 +60,19 @@ print(XORonSentence("rkAan","world"))
 
 
 
+
+def generatKey(message,key):
+    if len(message) == len(key):
+        return key
+    elif len(message)< len(key):
+        return key[0: len(meeage)]
+    else:
+        genkey =""
+        remainder = len(message)%len(key)
+        for i in range(math.floor(len(message)/len(key))):
+            genkey += key 
+        genkey += key[0:remainder]
+        return genkey
+message = input("plesase enter a message")
+key = input("Please enter a key:")
+print("your message is",XORonSentence(message,key))
